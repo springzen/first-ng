@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Example</title>
+    <script src="../angular.js"></script>
+    <script type="text/javascript">
+        /**
+         * Reading and modifying the property values
+         * There are two different syntax styles you can use for this.
+         */
+        var myData5 = {
+            name: "Will",
+            weather: "sunny"
+        }
+
+        /**
+         * Style one
+         * @type {string}
+         */
+        myData5.name = "Willhelm";
+
+        /**
+         * Style two
+         * @type {string}
+         */
+        myData5["weather"] = "raining";
+
+        console.log("#5 " + myData5.name);
+        console.log("#5 " + myData5["weather"]);
+    </script>
+</head>
+<body>
+</body>
+</html>

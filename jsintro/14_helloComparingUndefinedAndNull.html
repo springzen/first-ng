@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Example</title>
+    <script src="../angular.js"></script>
+    <script type="text/javascript">
+        /**
+         * Comparing undefined and null Values
+         *
+         * JavaScript is unusual in that it also defines null, another special value.
+         * The null value is slightly different from undefined. The undefined value is returned when no value is defined,
+         * and null is used when you want to indicate that you have
+         * assigned a value but that value is not a valid object, string, number,
+         * or boolean; that is, you have defined a value of no value.
+         */
+
+        var myData = {
+            name: "Will",
+            weather: "sunny"
+        }
+
+        // example - prints undefined
+        console.log("Prop: " + myData.doesntexist);
+
+        /**
+         * Let's watch the transition to null
+         */
+
+        var myData16 = {
+            name: "Adam"
+        };
+
+        console.log(myData16);
+        console.log("Var: " + myData16.weather);
+        console.log("Prop: > false " + ("weather" in myData16));
+
+        myData16.weather = "sunny";
+        console.log("Var: " + myData16.weather);
+        console.log("Prop: > true " + ("weather" in myData16));
+
+        myData16.weather = null;
+        console.log("Var: " + myData16.weather);
+        console.log("Prop: null but exists " + ("weather" in myData16));
+
+        /**
+         * Checking for null or undefined
+         */
+        var myData17 = {
+            name: "Adam",
+            city: null
+        };
+        if (!myData.name) {
+            console.log("name IS null or undefined");
+        } else {
+            console.log("name is NOT null or undefined");
+        }
+        if (!myData.city) {
+            console.log("city IS null or undefined");
+        } else {
+            console.log("city is NOT null or undefined");
+        }
+
+        if (!myData.address) {
+            console.log("address IS null or undefined");
+        } else {
+            console.log("address is NOT null or undefined");
+        }
+
+        /**
+         * This technique relies on the type coercion that JavaScript performs such that the values you are checking are
+         * treated as boolean values. If a variable or property is null or undefined, then the coerced boolean value is false
+         *
+         * using the || operator to coalesce null values
+         * http://stackoverflow.com/questions/476436/is-there-a-null-coalescing-operator-in-javascript
+         *
+         */
+        var whatIWant = null || new String(); // is a new shiny object (string)
+        console.log(">>> " +whatIWant);
+        var whatIWant = undefined || "well defined"; // is "well defined"
+        console.log(">>> " +whatIWant);
+        var whatIWant = 0 || 42; // is 42
+        console.log(">>> " +whatIWant);
+        var whatIWant = "" || "a million bucks"; // is "a million bucks"
+        console.log(">>> " +whatIWant);
+        var whatIWant = "false" || "no way"; // is "false"
+        console.log(">>> " +whatIWant);
+
+        /**
+         * You can also use the AngularJS angular.isDefined and angular.isUndefined methods
+         */
+        console.log("is defined? name: " + angular.isDefined(myData.name));
+        console.log("is defined? city: " + angular.isDefined(myData.city));
+        console.log("is defined? country: " + angular.isDefined(myData.country));
+
+        /**
+         * These methods check only whether a value has been defined, not whether it is null,
+         * and this can be useful for differentiating between null and undefined values.
+         * In the listing I have used the angular.isDefined method to check a property that has been defined and assigned a value,
+         * a property that has been defined but is null, and an undefined value.
+         */
+    </script>
+</head>
+<body>
+</body>
+</html>

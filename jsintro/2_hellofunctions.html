@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Example</title>
+    <script src="../angular.js"></script>
+    <script type="text/javascript">
+
+        /**
+         * A simple function
+         */
+        function aFunction() {
+            console.log("I am a simple function");
+        }
+
+
+        /**
+         * Pass two arguments to a function
+         * @param name
+         * @param weather
+         */
+        function myFunc(name, weather) {
+            console.log("Hello " + name + ".");
+            console.log("It is " + weather + " today");
+        }
+
+        /**
+         * Calls the function with two arguments
+         * - though you can call the function with less arguments than defined; if is recommended not to
+         * - notice that I had to name the function myFunc2 - this is because JavaScript does not support polymorphism
+         */
+        myFunc("Bill", "sunny");
+        function myFunc2(name) {
+            return ("Hello " + name + ".");
+        }
+
+        console.log(myFunc2("Bill"));
+
+        function foo() {
+            console.log("foo");
+        }
+
+        foo();
+
+        /**
+         * It's an Immediately-Invoked Function Expressions (IIFE).
+         * It executes immediately after it's created.
+         * Read more about IIFE @ http://en.wikipedia.org/wiki/Immediately-invoked_function_expression
+         */
+        (function () {
+            console.log("I am an IIFE (Immediately-invoked function expression)");
+            console.log("I can call other methods");
+            aFunction();
+        }());
+
+        (function() {
+            // IIFE code goes here
+            console.log("Hello from IIFE");
+        })();
+    </script>
+</head>
+<body>
+</body>
+</html>

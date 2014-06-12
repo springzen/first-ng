@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Example</title>
+    <script src="../angular.js"></script>
+    <script type="text/javascript">
+        /**
+         * The equality operator vs. the identity operator
+         * The equality operator will attempt to coerce operands to the same type in order to assess equality.
+         * This is a handy feature, as long as you are aware it is happening.
+         */
+
+        var firstVal = 5;
+        var secondVal = "5";
+        if (firstVal == secondVal) {
+            console.log("They are the same");
+        } else {
+            console.log("They are not the same.");
+        }
+
+        /**
+         * JavaScript is converting the two operands into the same type and comparing them.
+         * In essence, the equality operator tests that values are the same irrespective of their type.
+         * If you want to test to ensure that the values and the types are the same,
+         * then you need to use the identity operator (===, three equals signs, rather than the two of the equality operator)
+         */
+        if (firstVal === secondVal) {
+            console.log("They are the same");
+        } else {
+            console.log("They are not the same.");
+        }
+
+        /**
+         * Performing equality and identity tests on objects
+         */
+        var myData7 = {
+            name: "Will",
+            weather: "sunny"
+        }
+
+        var myData8 = {
+            name: "Will",
+            weather: "sunny"
+        }
+
+        var myData9 = myData8;
+
+        var test1 = myData7 == myData8;
+        var test2 = myData8 == myData9;
+        var test3 = myData7 === myData8;
+        var test4 = myData8 === myData9;
+        console.log("Test 1: " + test1 + " Test 2: " + test2);
+        console.log("Test 3: " + test3 + " Test 4: " + test4);
+
+        /**
+         * Performing equality and identity tests on primitives
+         */
+        var myData10 = 5;
+        var myData11 = "5";
+        var myData12 = myData11;
+
+        var test5 = myData10 == myData11;
+        var test6 = myData11 == myData12;
+        var test7 = myData10 === myData11;
+        var test8 = myData11 === myData12;
+
+        console.log("Test 5: " + test5 + " Test 6: " + test6);
+        console.log("Test 7: " + test7 + " Test 8: " + test8);
+
+    </script>
+</head>
+<body>
+</body>
+</html>

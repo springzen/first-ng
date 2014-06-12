@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Example</title>
+<script src="../angular.js"></script>
+<script type="text/javascript">
+/**
+ * Simple console message
+ */
+console.log("Hello");
+
+/**
+ * Pass two arguments to a function
+ * @param name
+ * @param weather
+ */
+function myFunc(name, weather) {
+    console.log("Hello " + name + ".");
+    console.log("It is " + weather + " today");
+}
+
+/**
+ * Calls the function with two arguments
+ * - though you can call the function with less arguments than defined; if is recommended not to
+ * - notice that I had to name the function myFunc2 - this is because JavaScript does not support polymorphism
+ */
+myFunc("Will", "sunny");
+function myFunc2(name) {
+    return ("Hello " + name + ".");
+}
+
+console.log(myFunc2("Will"));
+
+/**
+ * Calling angular.isFunction to identify if the object is a function
+ * @param unknownObject
+ */
+function printMessage(unknownObject) {
+    if (angular.isFunction(unknownObject)) {
+        unknownObject();
+    } else {
+        console.log("Not a function :: " + unknownObject);
+    }
+}
+
+var variable1 = function sayHello() {
+    console.log("Hello");
+}
+
+var variable2 = "Goodbye";
+printMessage(variable1);
+printMessage(variable2);
+
+/**
+ * Global vs local variables
+ */
+var myGlobalVar = "apples";
+
+function myFunc(name) {
+    var myLocalVar = "sunny";
+    return ("Hello " + name + ". Today is " + myLocalVar + ".");
+}
+console.log(myFunc("Will"));
+
+console.log(angular.isString("Hello") + " " + angular.isArray(23));
+console.log("I am " + angular.uppercase("shouting"));
+console.log("I am " + angular.lowercase("WhiSpeRing"));
+
+/**
+ * Working with numbers
+ * @type {number}
+ */
+var daysInWeek = 7;
+var pi = 3.14;
+var hexValue;
+
+console.log(angular.isNumber(daysInWeek) + " " + angular.isNumber("Hello"));
+
+/**
+ * Creating objects
+ * @type {Object}
+ */
+var myData = new Object();
+myData.name = "Will";
+myData.weather = "sunny";
+
+console.log("Hello " + myData.name + ".");
+console.log("Today is " + myData.weather);
+
+/**
+ * You can define an object and its properties in a single step using the object literal format
+ * @type {{name: string, weather: string}}
+ */
+var myData2 = {
+    name: "Will",
+    weather: "sunny"
+}
+
+console.log("#2 Hello " + myData2.name + ".");
+console.log("#2 Today is " + myData2.weather);
+
+/**
+ * Using functions as methods
+ * - a function defined on an object is called a method
+ * @type {{name: string, weather: string, printMessages: printMessages}}
+ */
+var myData3 = {
+    name: "Adam",
+    weather: "sunny",
+    printMessages: function () {
+        console.log("#3 Hello " + this.name + ". ");
+        console.log("#3 Today is " + this.weather + ".");
+    }
+};
+myData3.printMessages();
+
+/**
+ * Angular makes it easy to copy methods and properties from one object to another through the angular.extend method
+ */
+var myData4 = {
+    name: "Adam",
+    weather: "sunny",
+    printMessages: function () {
+        console.log("#4 Hello " + this.name + ". ");
+        console.log("#4 Today is " + this.weather + ".");
+    }
+};
+var myExtendedObject = {
+    city: "London"
+}
+/**
+ * Here we copy all of the properties and functions from myData4 - then we just show the mixed properties as
+ * being available in myExtendedObject
+ * Note: The extend method preserves any properties and methods on the target object. If you want to create a copy
+ * of an object without this preservation then you can use the angular.copy instead.
+ */
+angular.extend(myExtendedObject, myData)4;
+console.log(myExtendedObject.name);
+console.log(myExtendedObject.city);
+/**
+ * http://stackoverflow.com/questions/16797659/jquery-extend-vs-angular-extend
+ */
+console.log(myExtendedObject);
+
+/**
+ * Reading and modifying the property values
+ * There are two different syntax styles you can use for this.
+ */
+var myData5 = {
+    name: "Will",
+    weather: "sunny"
+}
+
+/**
+ * Style one
+ * @type {string}
+ */
+myData5.name = "Willhelm";
+
+/**
+ * Style two
+ * @type {string}
+ */
+myData["weather"] = "raining";
+
+console.log("#5 " + myData5.name);
+console.log("#5 " + myData5["weather"]);
+
+/**
+ * Enumerating an object's properties
+ */
+var myData6 = {
+    name: "Adam",
+    weather: "sunny",
+    printMessages: function () {
+        console.log("#6 Hello " + this.name + ". ");
+        console.log("#6 Today is " + this.weather + ".");
+    }
+};
+for (var prop in myData6) {
+    console.log("Name " + prop + " Value: " + myData6[[prop]]);
+}
+console.log("--- > angular.forEach below");
+angular.forEach(myData6, function (value, key) {
+    console.log("Name: " + key + " Value: " + value);
+});
+
+/**
+ * Determining whether an object has a property
+ * @type {boolean}
+ */
+var hasName = "name" in myData6;
+var hasDate = "date" in myData6;
+console.log("Has name : " + hasName);
+console.log("Has date : " + hasDate);
+
+/**
+ * Using conditional statements
+ */
+var name = "Adam";
+if (name == "Adam") {
+    console.log("Name is Adam.");
+} else if (name == "Jacqui") {
+    console.log("Name is Jacqui.");
+} else {
+    console.log("Unknown name");
+}
+
+switch (name) {
+    case "Adam" :
+        console.log("Name is Adam.");
+        break;
+    case "Jacqui":
+        console.log("Name is Jacqui.");
+        break;
+    default:
+        console.log("Unknown name");
+        break;
+}
+
+/**
+ * The equality operator vs. the identity operator
+ * The equality operator will attempt to coerce operands to the same type in order to assess equality.
+ * This is a handy feature, as long as you are aware it is happening.
+ */
+
+var firstVal = 5;
+var secondVal = "5";
+if (firstVal == secondVal) {
+    console.log("They are the same");
+} else {
+    console.log("They are not the same.");
+}
+
+/**
+ * JavaScript is converting the two operands into the same type and comparing them.
+ * In essence, the equality operator tests that values are the same irrespective of their type.
+ * If you want to test to ensure that the values and the types are the same,
+ * then you need to use the identity operator (===, three equals signs, rather than the two of the equality operator)
+ */
+if (firstVal === secondVal) {
+    console.log("They are the same");
+} else {
+    console.log("They are not the same.");
+}
+
+/**
+ * Performing equality and identity tests on objects
+ */
+var myData7 = {
+    name: "Will",
+    weather: "sunny"
+}
+
+var myData8 = {
+    name: "Will",
+    weather: "sunny"
+}
+
+var myData9 = myData8;
+
+var test1 = myData7 == myData8;
+var test2 = myData8 == myData9;
+var test3 = myData7 === myData8;
+var test4 = myData8 === myData9;
+console.log("Test 1: " + test1 + " Test 2: " + test2);
+console.log("Test 3: " + test3 + " Test 4: " + test4);
+
+/**
+ * Performing equality and identity tests on primitives
+ */
+var myData10 = 5;
+var myData11 = "5";
+var myData12 = myData11;
+
+var test5 = myData10 == myData11;
+var test6 = myData11 == myData12;
+var test7 = myData10 === myData11;
+var test8 = myData11 === myData12;
+
+console.log("Test 5: " + test5 + " Test 6: " + test6);
+console.log("Test 7: " + test7 + " Test 8: " + test8);
+
+/**
+ * Explicitly converting types
+ *
+ * The string concatenation operator (+) has a higher precedence than the addition operator (also +),
+ * which means that JavaScript will concatenate variables in preference to adding.
+ * This can cause confusion because JavaScript will also convert types freely to produce
+ * a result—and not always the result that is expected
+ */
+
+var myData13 = 5 + 5;
+var myData14 = 5 + "5";
+console.log("Result 1: " + myData13);
+console.log("Result 2: " + myData14);
+
+/**
+ * Explicit conversion
+ */
+var myData15 = (5).toString() + String(5);
+console.log("Result 3: " + myData15); // expected 55
+
+var anotherFirstVal = "5";
+var anotherSecondVal = "5";
+var result = Number(anotherFirstVal) + Number(anotherSecondVal);
+console.log("Result 4: " + result); // expected 10
+
+/**
+ * The Number method is strict in the way that is parses string values,
+ * but there are two other functions you can use that are more flexible and will ignore trailing non-number characters.
+ *
+ * Number(str)          - Parses the specified string to create an integer or real value
+ * parseInt(str)        - Parses the specified string to create an integer value
+ * parseFloat(str)      - Parses the specified string to create an integer or real value
+ */
+
+
+/**
+ * Working with arrays
+ */
+
+var myArray = new Array();
+myArray[0] = 100;
+myArray[1] = "Adam";
+myArray[2] = true;
+
+/**
+ * I have created a new array by calling new Array(). This creates an empty array, which I assign to the variable myArray.
+ * In the subsequent statements, I assign values to various index positions in the array.
+ * There are a couple of things to note in this example. First, I didn't need to declare the number of items in the
+ * array when I created it. JavaScript arrays will resize themselves to hold any number of items.
+ * The second point is that I didn't have to declare the data types that the array will hold.
+ * Any JavaScript array can hold any mix of data types. In the example, I have assigned three items to the array:
+ * a number, a string, and a boolean.
+ */
+
+/**
+ * Using an array literal
+ *
+ * The array literal style lets you create and populate an array in a single statement
+ */
+var myArray2 = [100, "Adam", true];
+
+/**
+ * Detecting an Array
+ *
+ * AngularJS provides the angular.isArray method, which returns true if the argument it is called with is an array
+ */
+
+console.log("Is this an array? " + angular.isArray(myArray2));
+console.log("Is this an array? " + angular.isArray("Adam"));
+console.log("Is this an array? " + angular.isArray(23));
+
+/**
+ * Reading and Modifying the Contents of an Array
+ */
+console.log("Index 0: " + myArray[0]);
+
+/**
+ * Modifying the Contents of an Array
+ */
+myArray[0] = "Tuesday";
+console.log("Index 0: " + myArray[0]);
+
+/**
+ * Enumerating the contents of an array
+ *
+ * Something to remember - Angular is faster than native JS
+ * http://jsperf.com/angular-foreach-vs-native-for-loop/3
+ *
+ * http://stackoverflow.com/questions/21388741/angular-foreach-and-objects
+ */
+for (var i = 0; i < myArray.length; i++) {
+    console.log("Index " + i + ": " + myArray[i]);
+}
+console.log("---");
+angular.forEach(myArray2, function (value, key) {
+    console.log(key + ": " + value);
+});
+
+/**
+ * Comparing undefined and null Values
+ *
+ * JavaScript is unusual in that it also defines null, another special value.
+ * The null value is slightly different from undefined. The undefined value is returned when no value is defined,
+ * and null is used when you want to indicate that you have
+ * assigned a value but that value is not a valid object, string, number,
+ * or boolean; that is, you have defined a value of no value.
+ */
+
+// example
+console.log("Prop: " + myData.doesntexist);
+
+/**
+ * Let's watch the transition to null
+ */
+
+var myData16 = {
+    name: "Adam",
+};
+console.log(myData16);
+console.log("Var: " + myData16.weather);
+console.log("Prop: " + ("weather" in myData16));
+myData.weather = "sunny";
+console.log("Var: " + myData16.weather);
+console.log("Prop: " + ("weather" in myData16));
+myData.weather = null;
+console.log("Var: " + myData16.weather);
+console.log("Prop: " + ("weather" in myData16));
+
+/**
+ * Checking for null or undefined
+ */
+var myData17 = {
+    name: "Adam",
+    city: null
+};
+if (!myData.name) {
+    console.log("name IS null or undefined");
+} else {
+    console.log("name is NOT null or undefined");
+}
+if (!myData.city) {
+    console.log("city IS null or undefined");
+} else {
+    console.log("city is NOT null or undefined");
+}
+
+if (!myData.address) {
+    console.log("address IS null or undefined");
+} else {
+    console.log("address is NOT null or undefined");
+}
+
+/**
+ * This technique relies on the type coercion that JavaScript performs such that the values you are checking are
+ * treated as boolean values. If a variable or property is null or undefined, then the coerced boolean value is false
+ *
+ * using the || operator to coalesce null values
+ * http://stackoverflow.com/questions/476436/is-there-a-null-coalescing-operator-in-javascript
+ *
+ */
+var whatIWant = null || new String(); // is a new shiny object (string)
+console.log(whatIWant);
+var whatIWant = undefined || "well defined"; // is "well defined"
+var whatIWant = 0 || 42; // is 42
+var whatIWant = "" || "a million bucks"; // is "a million bucks"
+var whatIWant = "false" || "no way"; // is "false"
+
+/**
+ * You can also use the AngularJS angular.isDefined and angular.isUndefined methods
+ */
+console.log("is defined? name: " + angular.isDefined(myData.name));
+console.log("is defined? city: " + angular.isDefined(myData.city));
+console.log("is defined? country: " + angular.isDefined(myData.country));
+
+/**
+ * These methods check only whether a value has been defined, not whether it is null,
+ * and this can be useful for differentiating between null and undefined values.
+ * In the listing I have used the angular.isDefined method to check a property that has been defined and assigned a value,
+ * a property that has been defined but is null, and an undefined value.
+ */
+
+</script>
+<script type="application/javascript">
+    /**
+     * Notice how we can call a global from anywhere including a different script section
+     */
+    console.log("I like " + myGlobalVar);
+</script>
+</head>
+<body>
+This is a simple example
+</body>
+</html>

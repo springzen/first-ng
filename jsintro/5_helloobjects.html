@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Example</title>
+    <script src="../angular.js"></script>
+    <script type="text/javascript">
+        /**
+         * Creating objects
+         * @type {Object}
+         */
+        var myData = new Object();
+        myData.name = "Will";
+        myData.weather = "sunny";
+
+        console.log("Hello " + myData.name + ".");
+        console.log("Today is " + myData.weather);
+
+        /**
+         * You can define an object and its properties in a single step using the object literal format
+         * @type {{name: string, weather: string}}
+         */
+        var myData2 = {
+            name: "Will",
+            weather: "sunny"
+        }
+
+        console.log("#2 Hello " + myData2.name + ".");
+        console.log("#2 Today is " + myData2.weather);
+
+    </script>
+</head>
+<body>
+</body>
+</html>

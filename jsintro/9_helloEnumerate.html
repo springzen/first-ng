@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Example</title>
+    <script src="../angular.js"></script>
+    <script type="text/javascript">
+        /**
+         * Enumerating an object's properties
+         */
+        var myData6 = {
+            name: "Adam",
+            weather: "sunny",
+            printMessages: function () {
+                console.log("#6 Hello " + this.name + ". ");
+                console.log("#6 Today is " + this.weather + ".");
+            }
+        };
+        for (var prop in myData6) {
+            console.log("Name " + prop + " Value: " + myData6[[prop]]);
+        }
+        console.log("--- > angular.forEach below");
+        angular.forEach(myData6, function (value, key) {
+            console.log("Name: " + key + " Value: " + value);
+        });
+
+        /**
+         * Determining whether an object has a property
+         * @type {boolean}
+         */
+        var hasName = "name" in myData6;
+        var hasDate = "date" in myData6;
+        console.log("Has name : " + hasName);
+        console.log("Has date : " + hasDate);
+    </script>
+</head>
+<body>
+</body>
+</html>

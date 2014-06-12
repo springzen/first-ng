@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Example</title>
+    <script src="../angular.js"></script>
+    <script type="text/javascript">
+        /**
+         * Using functions as methods
+         * - a function defined on an object is called a method
+         * @type {{name: string, weather: string, printMessages: printMessages}}
+         */
+        var myData3 = {
+            name: "Adam",
+            weather: "sunny",
+            printMessages: function () {
+                console.log("#3 Hello " + this.name + ". ");
+                console.log("#3 Today is " + this.weather + ".");
+            }
+        };
+        myData3.printMessages();
+
+    </script>
+</head>
+<body>
+</body>
+</html>

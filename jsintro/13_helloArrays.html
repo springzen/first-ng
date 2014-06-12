@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Example</title>
+    <script src="../angular.js"></script>
+    <script type="text/javascript">
+        /**
+         * Working with arrays
+         */
+
+        var myArray = new Array();
+        myArray[0] = 100;
+        myArray[1] = "Adam";
+        myArray[2] = true;
+
+        /**
+         * I have created a new array by calling new Array(). This creates an empty array, which I assign to the variable myArray.
+         * In the subsequent statements, I assign values to various index positions in the array.
+         * There are a couple of things to note in this example. First, I didn't need to declare the number of items in the
+         * array when I created it. JavaScript arrays will resize themselves to hold any number of items.
+         * The second point is that I didn't have to declare the data types that the array will hold.
+         * Any JavaScript array can hold any mix of data types. In the example, I have assigned three items to the array:
+         * a number, a string, and a boolean.
+         */
+
+        /**
+         * Using an array literal
+         *
+         * The array literal style lets you create and populate an array in a single statement
+         */
+        var myArray2 = [100, "Adam", true];
+
+        /**
+         * Detecting an Array
+         *
+         * AngularJS provides the angular.isArray method, which returns true if the argument it is called with is an array
+         */
+
+        console.log("Is this an array? " + angular.isArray(myArray2));
+        console.log("Is this an array? " + angular.isArray("Adam"));
+        console.log("Is this an array? " + angular.isArray(23));
+
+        /**
+         * Reading and Modifying the Contents of an Array
+         */
+        console.log("Index 0: " + myArray[0]);
+
+        /**
+         * Modifying the Contents of an Array
+         */
+        myArray[0] = "Tuesday";
+        console.log("Index 0: " + myArray[0]);
+
+        /**
+         * Enumerating the contents of an array
+         *
+         * Something to remember - Angular is faster than native JS
+         * http://jsperf.com/angular-foreach-vs-native-for-loop/3
+         *
+         * http://stackoverflow.com/questions/21388741/angular-foreach-and-objects
+         */
+        console.log("Simple for...")
+        for (var i = 0; i < myArray.length; i++) {
+            console.log("Index " + i + ": " + myArray[i]);
+        }
+        console.log("angular.forEach");
+        angular.forEach(myArray2, function (value, key) {
+            console.log(key + ": " + value);
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>

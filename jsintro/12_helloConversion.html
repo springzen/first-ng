@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Example</title>
+    <script src="../angular.js"></script>
+    <script type="text/javascript">
+        /**
+         * Explicitly converting types
+         *
+         * The string concatenation operator (+) has a higher precedence than the addition operator (also +),
+         * which means that JavaScript will concatenate variables in preference to adding.
+         * This can cause confusion because JavaScript will also convert types freely to produce
+         * a result—and not always the result that is expected
+         */
+
+        var myData13 = 5 + 5;
+        var myData14 = 5 + "5";
+        console.log("Result 1: " + myData13);
+        console.log("Result 2: " + myData14);
+
+        /**
+         * Explicit conversion
+         */
+        var myData15 = (5).toString() + String(5);
+        console.log("Result 3: " + myData15); // expected 55
+
+        var anotherFirstVal = "5";
+        var anotherSecondVal = "5";
+        var result = Number(anotherFirstVal) + Number(anotherSecondVal);
+        console.log("Result 4: " + result); // expected 10
+
+        /**
+         * The Number method is strict in the way that is parses string values,
+         * but there are two other functions you can use that are more flexible and will ignore trailing non-number characters.
+         *
+         * Number(str)          - Parses the specified string to create an integer or real value
+         * parseInt(str)        - Parses the specified string to create an integer value
+         * parseFloat(str)      - Parses the specified string to create an integer or real value
+         */
+    </script>
+</head>
+<body>
+</body>
+</html>

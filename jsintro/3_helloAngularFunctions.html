@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Example</title>
+    <script src="../angular.js"></script>
+    <script type="text/javascript">
+        /**
+         * Calling angular.isFunction to identify if the object is a function
+         * @param unknownObject
+         */
+        function printMessage(unknownObject) {
+            if (angular.isFunction(unknownObject)) {
+                console.log("Type is a function. Invoking...");
+                unknownObject();
+            } else {
+                console.log("Type is not a function :: " + unknownObject);
+            }
+        }
+
+        var variable1 = function sayHello() {
+            console.log("Hello");
+        }
+
+        var variable2 = "Goodbye";
+
+
+        printMessage(variable1);
+        printMessage(variable2);
+
+        /**
+         * Global vs local variables
+         */
+        var myGlobalVar = "apples";
+
+        function myFunc(name) {
+            var myLocalVar = "sunny";
+            return ("Hello " + name + ". Today is " + myLocalVar + ".");
+        }
+        console.log(myFunc("Bill"));
+
+        console.log(angular.isString("Hello") + " " + angular.isArray(23));
+        console.log("I am " + angular.uppercase("shouting"));
+        console.log("I am " + angular.lowercase("WhiSpeRing"));
+    </script>
+    <script type="text/javascript">
+        /**
+         * Notice how we can call a global from anywhere including a different script section
+         */
+        console.log("I like " + myGlobalVar);
+    </script>
+</head>
+<body>
+</body>
+</html>
