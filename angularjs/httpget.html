@@ -19,9 +19,9 @@
 <body ng-controller="demoCtrl">
 <div class="panel">
     <h1>To Do</h1>
-    <table class="table">
+    <table class="table table-striped">
         <tr>
-            <td>Action</td>
+        <td>Action</td>
             <td>Done</td>
         </tr>
         <tr ng-repeat="item in todos">
@@ -31,7 +31,7 @@
     </table>
 </div>
 <div class="well">
-    Show JSON: <input type="checkbox" ng-model="checked"><br/>
+    <label for="showjson">Show JSON:</label> <input id="showjson" type="checkbox" ng-model="checked"><br/>
 
     <div ng-show="checked">
         <pre>{{todos | json}}</pre>
